@@ -7,29 +7,27 @@ const Command = require('../command.js');
 
 describe("Message class", function() {
 
-  it("throws error if a name is NOT passed into the constructor ", function() {
+  it("throws error if a name is NOT passed into the constructor as the first parameter ", function() {
    assert.throws(
      function() {
        new Message();
      },
      {
-       message: 'Name required'
+       message: 'Message name required.'
      },
    );
     });
 
   it("constructor sets name", function() {
-    let input = "Constructor Name";
-    let output = new Message("Constructor Name", "command1");
+    let message = new Message('New message!');
+    assert.strictEqual(message.name, 'New message!');
+  });
 
-    assert.strictEqual(output.name,input);
-  }); 
-
-  it("contains  commands passed into the constructor as 2nd argument", function() {
-    let input = "command1";
-    let output = new Message("Constructor Name", "command1");
+  it("contains  commands array passed into the constructor as 2nd argument", function() {
+    let commands = [new Command('STATUS_CHECK'), new Command('MOVE', 20)];
+    let message = new Message('Another message', "commands");
     
-    assert.strictEqual(output.commands,input);
+    assert.strictEqual(message.commands,commands);
   });
 
 });
