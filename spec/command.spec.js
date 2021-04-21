@@ -1,4 +1,4 @@
-const assert= require('assert');
+
 const Command = require('../command.js');
 
 // NOTE: If at any time, you want to focus on the output from a single test, feel free to comment out all the others.
@@ -7,24 +7,17 @@ const Command = require('../command.js');
 describe("Command class", function() {
 
   it("throws error if command type is NOT passed into constructor as the first parameter", function() {
-   assert.throws(
-     function() {
-       new Command();
-  },
-  {
-    message: 'Command type required.'
-  }
-   );
-});
+   expect(function() { new command();}).toThrow(new Error('command type required'));
+  }),
       
    it("constructor sets command type", function() {
      let command = new Command('STATUS_CHECK');
-      assert.strictEqual(command.commandType, 'STATUS_CHECK');
+     expect(command.commandType).toEqual('STATUS_CHECK');
    });
   
    it("constructor sets a value passed in as the 2nd arugument", function() {
    let command = new Command('MOVE', 20);
-   assert.strictEqual(command.value,20);
+   expect(command.value).toEqual(20);
    });
 });
   
