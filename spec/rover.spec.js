@@ -12,13 +12,14 @@ describe("Rover class", function() {
   // 7 tests here!
 it("constructor sets position and default values for mode and generatorWatts", function(){
   expect( function() { new Rover();}).toThrow(new Error('Rover position required.'));
+});
 
 it("response returned by receiveMessage contains name of message",function() {
   let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
   let Message = new Message("New message!", commands);
   let rover =new Rover(100);
-  let response = rover.receiveMessage(Message);
-  expect(response.message).toEqual("New message!"); 
+  let response = theRover.receiveMessage(theMessage);
+  expect(response.message).toEqual("New Message!"); 
 });
 
 it("responds returned by receiveMessage includes two results, if two commands are sent in message",function(){
@@ -66,5 +67,4 @@ it("responds with position for move commans", function(){
 
 });
   
-});
 
